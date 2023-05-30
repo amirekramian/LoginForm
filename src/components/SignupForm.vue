@@ -6,15 +6,20 @@
     <label>Password:</label>
     <div class="input-wrapper">
 
-    <input @click="viewcondition" @input="checkpasswordLength(); checkPasswordNumber(); checkPasswordCharacter(); CheckCapitalCharacter();" class="pass" :type="Passtype" required v-model="password">
+    <input maxlength="16" @click="viewcondition" @input="checkpasswordLength(); checkPasswordNumber(); checkPasswordCharacter(); CheckCapitalCharacter();" class="pass" :type="Passtype" required v-model="password">
     <FontAwesomeIcon @click="ChangePasswordVisibility" v-if="!PasswordVisibility" class="Icon" icon="eye" />
     <FontAwesomeIcon @click="ChangePasswordVisibility" v-if="PasswordVisibility" class="Icon" icon="eye-slash" />
+    <FontAwesomeIcon v-if="charCondition && lengthCondition && numberCondition && capitalCondition"  class="checkIcon" icon="check" />
+    <FontAwesomeIcon v-if="!charCondition || !lengthCondition || !numberCondition || !capitalCondition"  class="XIcon" icon="xmark" />
+
+
     </div>
     <div v-if="PassCondition">
-    <div :class="{acceptedCondition:lengthCondition}" class="pill">At least8 digit</div>
+    <div :class="{acceptedCondition:lengthCondition}" class="pill">at least 8 digit</div>
     <div :class="{acceptedCondition:numberCondition}" class="pill">Number</div>
     <div :class="{acceptedCondition:charCondition}" class="pill">Special character</div>
-    <div :class="{acceptedCondition:capitalCondition}" class="pill">Capital character</div>
+    <div :class="{acceptedCondition:capitalCondition}" class="pill"> Use capital</div>
+
 
     </div>
     <br>
@@ -50,20 +55,24 @@
         </div>
     </div>
   </form>
-  {{password}}
 </template>
 
 <script>
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCheck, faEye, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faEye, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 library.add(faEye);
 library.add(faEyeSlash);
 library.add(faTrash);
+library.add(faCheck);
+library.add(faXmark);
+
+
+
+
 
 
 
@@ -172,6 +181,7 @@ input,select {
 display: block;
 padding: 10px 6px;
 width: 100%;
+padding-left: 30px;
 box-sizing: border-box;
 border: none;
 border-bottom: 1px solid #302323;
@@ -218,7 +228,7 @@ div.submit{
     display: inline-block;
     font-size: 0.7em;
     padding: 0 5px 0 5px;
-    background: #16b156;
+    background: #0b5e2e;
     color:white;
     margin: 3px 3px;
     border-radius: 100px;
@@ -232,6 +242,20 @@ div.submit{
 .input-wrapper{
       position: relative;
 
+}
+.checkIcon{
+    color: #0b5e2e;
+     position: absolute;
+     top: 50%;
+     left: 5px;
+     transform: translateY(-50%);
+}
+.XIcon{
+    color: #b90101;
+     position: absolute;
+     top: 50%;
+     left: 5px;
+     transform: translateY(-50%);
 }
 </style>
 
