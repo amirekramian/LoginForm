@@ -1,7 +1,9 @@
 <template>
   <form @submit.self="HandleSubmit">
     <label>Email:</label>
-    <input type="email" required v-model="email">
+    <input @click="InvisibleCondition" type="email" required v-model="email">
+    <FontAwesomeIcon v-if="charCondition && lengthCondition && numberCondition && capitalCondition"  class="checkIcon" icon="check" />
+    <FontAwesomeIcon v-if="!charCondition || !lengthCondition || !numberCondition || !capitalCondition"  class="XIcon" icon="xmark" />
 
     <label>Password:</label>
     <div class="input-wrapper">
@@ -24,14 +26,14 @@
     </div>
     <br>
     <label>Role:</label>
-    <select v-model="role">
+    <select v-model="role" @click="InvisibleCondition">
         <option value="DevopsEngineer">Devops Engineer</option>
         <option value="Developer">Developer</option>
         <option value="CTO">CTO</option>
          <option value="TeamLead">Team Lead</option>
     </select>
     <label>Skills</label>
-    <input type="text" v-model="tempSkill" @keyup="AddSkill" placeholder="Use , for insert your skill">   
+    <input type="text" v-model="tempSkill" @keyup="AddSkill" placeholder="Use , for insert your skill" @click="InvisibleCondition">   
     <div v-for="Skill in Skills" :key="Skill" class="pill">
         <div>
         {{Skill}}
@@ -154,6 +156,10 @@ methods:{
         else{
             this.Passtype='password'
         }
+     },
+     InvisibleCondition(){
+                this.PassCondition = false
+
      }
 }
 }
