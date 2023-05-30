@@ -2,8 +2,6 @@
   <form @submit.self="HandleSubmit">
     <label>Email:</label>
     <input @click="InvisibleCondition" type="email" required v-model="email">
-    <FontAwesomeIcon v-if="charCondition && lengthCondition && numberCondition && capitalCondition"  class="checkIcon" icon="check" />
-    <FontAwesomeIcon v-if="!charCondition || !lengthCondition || !numberCondition || !capitalCondition"  class="XIcon" icon="xmark" />
 
     <label>Password:</label>
     <div class="input-wrapper">
@@ -22,8 +20,7 @@
     <div :class="{acceptedCondition:charCondition}" class="pill">Special character</div>
     <div :class="{acceptedCondition:capitalCondition}" class="pill"> Use capital</div>
 
-
-    </div>
+</div>
     <br>
     <label>Role:</label>
     <select v-model="role" @click="InvisibleCondition">
