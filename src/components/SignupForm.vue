@@ -31,7 +31,7 @@
         <div>
         {{Skill}}
         <button class="DelBtn" @click="RemoveSkill(Skill)">
-            <img src="/src/assets/icons8-delete-48.png" alt="X">
+            <FontAwesomeIcon icon="trash" />
         </button>
         </div>        
     </div>
@@ -56,13 +56,15 @@
 <script>
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faEye, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 library.add(faEye);
 library.add(faEyeSlash);
+library.add(faTrash);
+
 
 
 
@@ -191,6 +193,7 @@ input[type="checkbox"]{
     background: #e0e0e0;
     margin: 3px 3px;
     border-radius: 100px;
+    cursor: auto;
 }
 .DelBtn{
     color: #b90101;
