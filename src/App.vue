@@ -25,6 +25,6 @@ export default {
 }
 body{
   margin: 0;
-  background: #cccccc;
+  background: #eee;
 }
 </style>
